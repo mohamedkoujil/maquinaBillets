@@ -1,6 +1,3 @@
-import org.example.RED_BACKGROUND_BRIGHT
-import org.example.RESET
-import org.example.YELLOW_BOLD_BRIGHT
 import java.util.*
 
 val scan: Scanner = Scanner(System.`in`)

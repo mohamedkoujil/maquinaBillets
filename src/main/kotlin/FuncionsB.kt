@@ -1,6 +1,5 @@
-import org.example.BLACK_BOLD
-import org.example.RED_BOLD
-import org.example.RESET
+/*
+
 fun realizarCompra() {
     val maxBilletes = 3
     var contadorBilletes = 0
@@ -74,3 +73,4 @@ fun volverAtras(mensajeVolver: String, confirmacion: Int) {
         println(mensajeVolver)
     }
 }
+*/
