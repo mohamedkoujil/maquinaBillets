@@ -21,12 +21,11 @@ fun zonas (zona: Int): String {
 fun calcularPrecioBillete(tipoBillete: Int, zonas: Int): Float {
     var precioBillete = 0.0F
     when (tipoBillete) {
-        1 -> precioBillete = 1.5F
-        2 -> precioBillete = 2.15F
-        3 -> precioBillete = 3.6F
-        4 -> precioBillete = 4.35F
-        5 -> precioBillete = 6.7F
+        1 -> precioBillete = 2.4F
+        2 -> precioBillete = 11.35F
+        3 -> precioBillete = 40.0F
+        4 -> precioBillete = 10.0F
+        5 -> precioBillete = 80.0F
     }
     return precioBillete * zonas
 }
-

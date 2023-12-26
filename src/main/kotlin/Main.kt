@@ -1,7 +1,5 @@
-
 fun main() {
-
-        val arteAscii = """
+    val arteAscii = """
   _________
  | .-----. |
  ||       ||
@@ -13,16 +11,19 @@ Metros Mohammed
 Venta de Billetes
     """.trimIndent()
 
-        println(arteAscii+"\n")
+    println(arteAscii+"\n")
 
     val factura: MutableList<String> = mutableListOf()
-    var numBilletes = 0
+    var contadorBilletes = 0
+    var total = 0.0F
+    var totalPagado = 0.0F
+
     do {
-        var billete = 0
+        var tipoBillete = 0
         var zona = 0
 
         do {
-            billete = readInt("Bienvenido a la venta de billetes. Recuerde que, como máximo, podrá comprar " +
+            tipoBillete = readInt("Bienvenido a la venta de billetes. Recuerde que, como máximo, podrá comprar " +
                     "solamente tres billetes. Gracias\nPor favor, escoja una de las " +
                     "siguientes opciones:\n" +
                     "1. Billete sencillo\n" +
@@ -46,7 +47,10 @@ Venta de Billetes
                 4)
         } while (zona == 4)
 
-        println("Ha escogido: ${billetes(billete)}, ${zonas(zona)}")
+        val precioBillete = calcularPrecioBillete(tipoBillete, zona)
+        total += precioBillete // Agregar el precio del billete al total
+        println("Ha escogido: ${billetes(tipoBillete)}, ${zonas(zona)}")
+        println("Precio por zona: %.2f€".format(precioBillete))
 
         val eleccionFinalUsuario = readInt("1. Seguir comprando\n" +
                 "2. Pagar\n" +
@@ -56,7 +60,18 @@ Venta de Billetes
             1,
             3)
 
-        if (eleccionFinalUsuario != 3) factura.add( "${billetes(billete)} ${zonas(zona)}")
-    } while (eleccionFinalUsuario != 2)
-    println(factura)
+        if (eleccionFinalUsuario != 3) {
+            factura.add("${billetes(tipoBillete)} ${zonas(zona)} - %.2f€".format(precioBillete))
+        }
+        } while (eleccionFinalUsuario != 2)
+    println("TOTAL: %.2f€".format(total)) // Imprimir el total al final
+
+    // Pago y cambio
+            totalPagado = manejarPago(total, totalPagado)
+
+    println("____TIQUET____")
+            for (detalle in factura) {
+                println(detalle)
+            }
 }
+

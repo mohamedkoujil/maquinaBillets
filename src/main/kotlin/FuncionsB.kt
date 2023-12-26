@@ -1,6 +1,39 @@
-import org.example.BLACK_BOLD
-import org.example.RED_BRIGHT
-import org.example.RESET
+fun manejarPago(total: Float, totalPagado: Float): Float {
+    var totalPagadoLocal = totalPagado // Variable local para acumular el total pagado
+
+    while (totalPagadoLocal < total) {
+        val pagoActual = readFloat("Por favor, introduzca el importe para pagar " +
+                "(solo billetes de 5, 10, 20 o 50 euros, y monedas de 0.05, 0.10, 0.20, 0.50, 1 o 2 euros):",
+            "Error: Introduzca una cantidad válida")
+
+        if (!esCantidadValida(pagoActual)) {
+            println("Cantidad no válida. Intente nuevamente.")
+            continue
+        }
+
+        totalPagadoLocal += pagoActual
+        println("Total pagado hasta ahora: %.2f€".format(totalPagadoLocal))
+        val restante = total - totalPagadoLocal
+        println("Importe restante: %.2f€".format(restante))
+    }
+
+    // Calcular y mostrar el cambio si es necesario
+    val cambio = totalPagadoLocal - total
+    if (cambio > 0) {
+        println("Cambio: %.2f€".format(cambio))
+    } else {
+        println("Pago exacto. Gracias por su compra.")
+    }
+
+    return totalPagadoLocal
+}
+
+fun esCantidadValida(cantidad: Float): Boolean {
+    val monedasYBilletesValidos = setOf(0.05F, 0.10F, 0.20F, 0.50F, 1.0F, 2.0F, 5.0F, 10.0F, 20.0F, 50.0F)
+    return monedasYBilletesValidos.contains(cantidad)
+}
+
+/*
 fun realizarCompra() {
     val maxBilletes = 3
     var contadorBilletes = 0
@@ -60,3 +93,4 @@ fun NumeroBilletes(contador: Int, mensajeCantidadBilletes: String): Int {
     )
     return confirmacionVolver
 }
+ */
