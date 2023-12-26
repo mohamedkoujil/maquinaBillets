@@ -13,17 +13,14 @@ fun manejarPago(total: Float, totalPagado: Float): Float {
 
         totalPagadoLocal += pagoActual
         println("Total pagado hasta ahora: %.2f€".format(totalPagadoLocal))
-        val restante = total - totalPagadoLocal
+        var restante = total - totalPagadoLocal
+        if (restante < 0) restante = 0F
         println("Importe restante: %.2f€".format(restante))
     }
 
     // Calcular y mostrar el cambio si es necesario
     val cambio = totalPagadoLocal - total
-    if (cambio > 0) {
-        println("Cambio: %.2f€".format(cambio))
-    } else {
-        println("Pago exacto. Gracias por su compra.")
-    }
+    println("Cambio: %.2f€".format(cambio))
 
     return totalPagadoLocal
 }

@@ -1,18 +1,14 @@
 fun main() {
-    val arteAscii = """
-  _________
- | .-----. |
- ||       ||
- ||       ||
- |'-------'|
- |_|__|__|_|
-  (o)---(o)
-Metros Mohammed
-Venta de Billetes
-    """.trimIndent()
-
-    println(arteAscii+"\n")
-
+    println(RED + """
+      _________
+     | .-----. |
+     ||       ||
+     ||       ||
+     |'-------'|
+     |_|__|__|_|
+      (o)---(o)""" + RESET)
+    titolColors("   METROS ITB")
+    titolColors("Venta de billetes")
     val factura: MutableList<String> = mutableListOf()
     var contadorBilletes = 0
     var total = 0.0F
@@ -62,17 +58,17 @@ Venta de Billetes
 
         if (eleccionFinalUsuario != 3) {
             factura.add("${billetes(tipoBillete)} ${zonas(zona)} - %.2f€".format(precioBillete))
+            contadorBilletes++
         }
-        } while (eleccionFinalUsuario != 2)
-    println("TOTAL: %.2f€".format(total)) // Imprimir el total al final
+    } while (eleccionFinalUsuario != 2)
+    println("BILLETES: $contadorBilletes TOTAL: %.2f€".format(total)) // Imprimir el total al final
 
     // Pago y cambio
-            totalPagado = manejarPago(total, totalPagado)
+    totalPagado = manejarPago(total, totalPagado)
 
-    println("____TIQUET____")
-            for (detalle in factura) {
-                println(detalle)
-            }
-    print("___________")
+    val deseaFactura = readChar("Desea factura?[S/N]", "Opción no válida", 1)
+    if (deseaFactura == 'S') factura(factura, total, totalPagado)
+    println("Gracias por su compra")
 }
+
 
