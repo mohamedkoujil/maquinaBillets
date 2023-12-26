@@ -1,5 +1,21 @@
+
 fun main() {
-    var factura: MutableList<String> = mutableListOf()
+
+        val arteAscii = """
+  _________
+ | .-----. |
+ ||       ||
+ ||       ||
+ |'-------'|
+ |_|__|__|_|
+  (o)---(o)
+Metros Mohammed
+Venta de Billetes
+    """.trimIndent()
+
+        println(arteAscii+"\n")
+
+    val factura: MutableList<String> = mutableListOf()
     var numBilletes = 0
     do {
         var billete = 0
