@@ -1,5 +1,5 @@
 import org.example.BLACK_BOLD
-import org.example.RED_BOLD
+import org.example.RED_BRIGHT
 import org.example.RESET
 fun realizarCompra() {
     val maxBilletes = 3
@@ -8,26 +8,21 @@ fun realizarCompra() {
     while (contadorBilletes < maxBilletes && continuarPrograma) {
         println("Billete ${contadorBilletes + 1}:")
         menuTipoBillete()
-        // Llamamos a menuNumeroBilletes con el contador actual y el mensaje correspondiente
-        val confirmacionVolver = menuNumeroBilletes(contadorBilletes, "\nGracias por comprar ${contadorBilletes + 1} billete(s).")
-
+        val confirmacionVolver = NumeroBilletes(contadorBilletes, "\nGracias por comprar ${contadorBilletes + 1} billete(s).")
         if (confirmacionVolver == 1) {
-            // Si el usuario elige volver atrás, no incrementamos el contador y continuamos la iteración
-            volverAtras("Volviendo atrás...", confirmacionVolver)
+            println("Volviendo atrás...")
             continue
         }
-        menuZonas()
+         menuZonas()
         contadorBilletes++
-        println("Lleva comprado $contadorBilletes billete/s")
+        println(RED_BRIGHT + "Lleva comprado $contadorBilletes billete/s" + RESET)
         when (contadorBilletes) {
             2 -> println(BLACK_BOLD + "\nSolo podrá comprar un ticket más a partir de ahora, gracias" + RESET)
         }
-        // Si ya se alcanza el número máximo de billetes, mostramos un mensaje y cambiamos continuarPrograma a false
         if (contadorBilletes >= maxBilletes) {
             println("Ha alcanzado el límite máximo de $maxBilletes billetes.")
             continuarPrograma = false
         } else {
-            // Preguntamos si el usuario desea comprar otro billete
             val confirmacion = readInt("¿Desea comprar otro billete? (1: Sí, 0: No)", "Opción no válida", "Fuera del rango permitido", 0, 1)
             continuarPrograma = confirmacion == 1
         }
@@ -35,7 +30,7 @@ fun realizarCompra() {
     println("Gracias por su compra. Ha comprado un total de $contadorBilletes billete/s")
 }
 fun menuTipoBillete (){
-readInt("Bienvenido a la venta de billetes. Recuerde que, como máximo, podrá comprar" +
+    readInt("Bienvenido a la venta de billetes. Recuerde que, como máximo, podrá comprar" +
         "solamente tres billetes. Gracias\nPor favor, escoja una de las " +
         "siguientes opciones:\n" +
         "1.Billete sencillo\n" +
@@ -55,7 +50,7 @@ fun menuZonas(){
         1,
         3)
 }
-fun menuNumeroBilletes(contador: Int, mensajeCantidadBilletes: String): Int {
+fun NumeroBilletes(contador: Int, mensajeCantidadBilletes: String): Int {
     val confirmacionVolver = readInt(
         "¿Desea volver atrás? (1: Sí, 0: No)",
         "Opción no válida",
@@ -63,14 +58,5 @@ fun menuNumeroBilletes(contador: Int, mensajeCantidadBilletes: String): Int {
         0,
         1
     )
-    if (confirmacionVolver == 1) {
-        // Si el usuario elige volver atrás, llamamos a la función menuTipoBillete
-        volverAtras("Volviendo atrás...", confirmacionVolver)
-    }
     return confirmacionVolver
-}
-fun volverAtras(mensajeVolver: String, confirmacion: Int) {
-    if (confirmacion == 1) {
-        println(mensajeVolver)
-    }
 }

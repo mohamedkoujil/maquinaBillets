@@ -1,6 +1,17 @@
-import org.example.RED_BOLD
-import org.example.RESET
 
 fun main() {
+    val arteAscii = """
+  _________
+ | .-----. |
+ ||       ||
+ ||       ||
+ |'-------'|
+ |_|__|__|_|
+  (o)---(o)
+Metros Mohammed
+Venta de Billetes
+    """.trimIndent()
+
+    println(arteAscii+"\n")
     realizarCompra()
 }
