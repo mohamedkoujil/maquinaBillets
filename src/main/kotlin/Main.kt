@@ -73,5 +73,6 @@ Venta de Billetes
             for (detalle in factura) {
                 println(detalle)
             }
+    print("___________")
 }
 
