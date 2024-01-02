@@ -201,6 +201,7 @@ fun readInt(pMessageIn: String
             , pMessageErrorDV: String
             , pMin: Int
             , pMax: Int
+            , pException: Int
 ): Int{
 
     var outputValue: Int = 0
@@ -214,11 +215,13 @@ fun readInt(pMessageIn: String
             println(RED_BACKGROUND_BRIGHT + "ERROR: " + pMessageErrorDT + RESET)
         }else{
             outputValue = scan.nextInt()
-
-            if (outputValue < pMin || outputValue > pMax){
-                println(YELLOW_BOLD_BRIGHT + "WARNING: " + pMessageErrorDV + RESET)
-                correctDataType = false
+            if (outputValue != pException) {
+                if (outputValue < pMin || outputValue > pMax){
+                    println(YELLOW_BOLD_BRIGHT + "WARNING: " + pMessageErrorDV + RESET)
+                    correctDataType = false
+                }
             }
+
         }
         scan.nextLine()
     }while(!correctDataType)
