@@ -17,6 +17,7 @@ fun titolColors(missatge: String) {
         // If there are more letters than colors, colorsIndex is reset to 0 to avoid errors
         if (colorsIndex == colors.indices.last) colorsIndex = 0
         else colorsIndex++
+        TimeUnit.MILLISECONDS.sleep(200)
     }
     println()
 }
